@@ -1,0 +1,36 @@
+doctype html
+html
+    head(lang='en')
+        meta(charset='UTF-8')
+        title
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+        link(rel='stylesheet', href=treeTheme)
+    body
+        ul.tree
+            li Databases
+                ul
+                    li DatabaseA
+                        ul
+                            li Schemas
+                                ul
+                                    li Schema A
+                                    li Schema B
+                                    li Schema C
+                    li DatabaseB
+                        ul
+                            li Schemas
+                                ul
+                                    li Schema A
+                                    li Schema B
+                                    li Schema C
+                    li DatabaseC
+                        ul
+                            li Schemas
+                                ul
+                                    li Schema A
+                                    li Schema B
+                                    li Schema C
+            li Tablespaces
+            li Roles
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
+        script(src='../dist/script.min.js')
