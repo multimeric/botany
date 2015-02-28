@@ -1,0 +1,110 @@
+//Selector variables
+middle-node = ':not(:last-child):not(:first-child)';
+first-node = ':first-child:not(:last-child)';
+last-node = ':last-child:not(:first-child)';
+only-node = ':first-child:last-child';
+
+//background-image variables
+closed = closed-img == '' ? none:url(closed-img)
+opened = open-img == '' ? none:url(open-img)
+vertical = vertical-img == '' ? none:url(vertical-img)
+horizontal = horizontal-img == '' ? none:url(horizontal-img)
+
+
+//Make the open and closed images seem interactive
+.botany-closed, .botany-open {
+  cursor: pointer;
+}
+
+.tree li {
+
+  //Don't display the closed image inside a open node
+  &.open {
+    &>.botany-closed {
+      display: none;
+    }
+  }
+
+  &:not(.open) {
+
+    //By default all nodes are closed, so their <ul>s are not displayed
+    ul {
+      display: none;
+    }
+
+    //Don't display the open image inside a closed node
+    &>.botany-open {
+      display: none;
+    }
+  }
+
+  //Base class that applies to all :before pseudo elements, defining the three background images
+  //The open/closed image, the vertical line, and the horizontal line
+  &:before {
+    background-position: 0 5px,
+    0 0,
+    10px 6px;
+
+    background-repeat: no-repeat,
+    repeat-y,
+    no-repeat;
+
+    background-size: 50% auto,
+    1em auto,
+    1em auto;
+
+    float: left;
+    cursor: pointer;
+    content: "";
+    display: block;
+    position: absolute;
+    height: calc(100% + 1em);
+    width: 20px;
+    margin-left: -20px;
+  }
+
+  // The last node has no vertical line
+  &{last-node} {
+
+    &:before {
+      background-image: closed,
+      none,
+      horizontal;
+    }
+
+    &.open:before {
+      background-image: opened,
+      none,
+      horizontal;
+    }
+  }
+
+  //The normal nodes have horizontal and vertical lines
+  &{first-node}, &{middle-node}, &{only-node} {
+
+    &:before {
+      background-image: closed,
+      vertical,
+      horizontal;
+    }
+
+    &.open:before {
+      background-image: opened,
+      vertical,
+      horizontal;
+    }
+  }
+
+  //Nodes that are by themselves don't need a long vertical line, just a short one
+  &{only-node}:before {
+    height: 1em;
+  }
+}
+
+//Make everything relatively positioned so that the :before elements can be absolutely positioned but relative to them
+.tree {
+  &ul, ul, li {
+    position: relative;
+    list-style: none;
+  }
+}

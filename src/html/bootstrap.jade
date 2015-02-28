@@ -1,0 +1,41 @@
+doctype html
+html
+    head(lang='en')
+        meta(charset='UTF-8')
+        title
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+        link(rel='stylesheet', href='../dist/no-markers/no-markers.css')
+    body
+        ul.tree
+            li
+                span.botany-closed.glyphicon.glyphicon-plus
+                span.botany-open.glyphicon.glyphicon-minus
+                |List 1
+                ul
+            li
+                span.botany-closed.glyphicon.glyphicon-plus
+                span.botany-open.glyphicon.glyphicon-minus
+                | List 2
+                ul
+            li
+                span.botany-closed.glyphicon.glyphicon-plus
+                span.botany-open.glyphicon.glyphicon-minus
+                |List 3
+                ul
+
+        button.randomize(type="button") Add Random Nodes
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
+        script(src='../dist/script.min.js')
+        script.
+            $(function () {
+                var counter = 0;
+                $(".randomize").click(function () {
+                    var lists = $(".tree ul");
+                    var index = Math.floor(Math.random() * lists.length);
+                    $(lists[index]).append('<li class="open">' +
+                    '<span class="botany-closed glyphicon glyphicon-plus"></span>' +
+                    '<span class="botany-open glyphicon glyphicon-minus"></span>' +
+                    'Inserted ' + counter++  +
+                    '<ul></ul></li>');
+                });
+            });

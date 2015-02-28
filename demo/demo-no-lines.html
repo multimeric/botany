@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/no-lines/no-lines.css">
+  </head>
+  <body>
+    <ul class="tree">
+      <li>List 1
+        <ul></ul>
+      </li>
+      <li>List 2
+        <ul></ul>
+      </li>
+      <li class="open">List 3
+        <ul></ul>
+      </li>
+    </ul>
+    <button type="button" class="randomize">Add Random Nodes</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../dist/script.min.js"></script>
+    <script>
+      $(function () {
+          var counter = 0;
+          $(".randomize").click(function () {
+              var lists = $(".tree ul");
+              var index = Math.floor(Math.random() * lists.length);
+              $(lists[index]).append("<li class='open'> Inserted " + counter++  + "<ul></ul></li>");
+          });
+      });
+    </script>
+  </body>
+</html>

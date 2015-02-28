@@ -7,30 +7,22 @@ html
         link(rel='stylesheet', href=treeTheme)
     body
         ul.tree
-            li Databases
+            li List 1
                 ul
-                    li DatabaseA
-                        ul
-                            li Schemas
-                                ul
-                                    li Schema A
-                                    li Schema B
-                                    li Schema C
-                    li DatabaseB
-                        ul
-                            li Schemas
-                                ul
-                                    li Schema A
-                                    li Schema B
-                                    li Schema C
-                    li DatabaseC
-                        ul
-                            li Schemas
-                                ul
-                                    li Schema A
-                                    li Schema B
-                                    li Schema C
-            li Tablespaces
-            li Roles
+            li List 2
+                ul
+            li.open List 3
+                ul
+
+        button.randomize(type="button") Add Random Nodes
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
         script(src='../dist/script.min.js')
+        script.
+            $(function () {
+                var counter = 0;
+                $(".randomize").click(function () {
+                    var lists = $(".tree ul");
+                    var index = Math.floor(Math.random() * lists.length);
+                    $(lists[index]).append("<li class='open'> Inserted " + counter++  + "<ul></ul></li>");
+                });
+            });
