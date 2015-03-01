@@ -24,7 +24,7 @@ the stylesheets in the `<head>`:
 ```html
 <link rel="stylesheet" href="static/libs/botany/botany.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="static/libs/botany/git adbotany.min.js"></script>
+<script src="static/libs/botany/botany.min.js"></script>
 ```
 
 ## Usage
