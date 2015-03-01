@@ -25,19 +25,30 @@ html
 
         button.randomize(type="button") Add Random Nodes
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
-        script(src='../dist/script.min.js')
+        script(src='../dist/botany.min.js')
         script.
             $(function () {
-                $(".botany").botany();
 
+                //Initialize the tree
+                $(".botany").botany();
+                //Code for adding random nodes (just used for this example)
                 var counter = 0;
-                $(".randomize").click(function () {
-                    var lists = $(".botany ul");
-                    var index = Math.floor(Math.random() * lists.length);
-                    $(lists[index]).append('<li class="open">' +
-                    '<span class="botany-closed glyphicon glyphicon-plus"></span>' +
-                    '<span class="botany-open glyphicon glyphicon-minus"></span>' +
-                    'Inserted ' + counter++ +
-                    '<ul></ul></li>');
-                });
+
+                function randomize() {
+                    for (var i = 0; i <= 5; i++) {
+                        var lists = $(".botany ul");
+                        var index = Math.floor(Math.random() * lists.length);
+                        $(lists[index]).append(
+                                '<li class="open">' +
+                                '   <span class="botany-closed glyphicon glyphicon-plus"></span>' +
+                                '   <span class="botany-open glyphicon glyphicon-minus"></span>' +
+                                '   Inserted ' + counter++ +
+                                '   <ul></ul>' +
+                                '</li>'
+                        );
+                    }
+                }
+
+                $(".randomize").click(randomize);
+                randomize();
             });

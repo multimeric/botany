@@ -27,12 +27,17 @@ $.fn.botany = function () {
 
         }
 
-        //Same logic as above
         else {
-            if (childList.children().length > 0)
-                childList.slideDown(function () {
-                    clicked.addClass("open");
-                });
+
+            //If there are subnodes, add the class before sliding down so that jQuery can work out its
+            //height correctly, but hide it so this isn't visible to the user
+            if (childList.children().length > 0) {
+                childList.hide();
+                clicked.addClass("open");
+                childList.slideDown();
+            }
+
+            //If there aren't subnodes, just remove the class
             else
                 clicked.addClass("open");
         }

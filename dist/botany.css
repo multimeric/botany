@@ -1,14 +1,27 @@
+/*
+ * Selector variables
+ */
+/*
+ * Functions
+ */
+/*
+ * Themes
+ */
 .botany.lines li:before {
   background-image: url("closed.svg"), url("vertical.svg"), url("horizontal.svg");
+  pointer: cursor;
 }
 .botany.lines li.open:before {
   background-image: url("open.svg"), url("vertical.svg"), url("horizontal.svg");
+  pointer: cursor;
 }
 .botany.no-lines li:before {
   background-image: url("closed.svg"), none, none;
+  pointer: cursor;
 }
 .botany.no-lines li.open:before {
   background-image: url("open.svg"), none, none;
+  pointer: cursor;
 }
 .botany.no-markers li:before {
   background-image: none, url("vertical.svg"), url("horizontal.svg");
@@ -16,6 +29,9 @@
 .botany.no-markers li.open:before {
   background-image: none, url("vertical.svg"), url("horizontal.svg");
 }
+/*
+ * Main CSS
+ */
 .botany-closed,
 .botany-open {
   cursor: pointer;
@@ -30,22 +46,21 @@
   display: none;
 }
 .botany li:before {
-  background-position: -1px 4px, 0px 0px, 10px 6px;
-  background-repeat: no-repeat, repeat-y, no-repeat;
-  background-size: 75% auto, 1em auto, 1em auto;
-  float: left;
-  cursor: pointer;
   content: "";
-  display: block;
   position: absolute;
-/*height: calc(100% + 1em);*/
   height: 100%;
-  width: 20px;
-  margin-left: -20px;
+  background-repeat: no-repeat, repeat-y, repeat-x;
+  width: calc(2em + 1px);
+  margin-left: -2em;
+  background-size: 1.3em auto, 1em auto, auto 1em;
+  background-position: -0.2em 0.2em, 0px 0.15em, 0.75em 0.3em;
+  padding-left: 0.4em;
+  background-clip: border-box, content-box, content-box;
 }
 .botany li:last-child:not(:first-child):before,
 .botany li:first-child:last-child:before {
   height: 1.2em;
+  background-repeat: no-repeat, no-repeat, repeat-x;
 }
 .botanyul,
 .botany ul,

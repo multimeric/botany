@@ -18,11 +18,16 @@ gulp.task('build', function (cb) {
 //Make a minified and non-minified version of script.js
 gulp.task('js', function () {
     return gulp.src('src/js/script.js')
+        .pipe(rename({
+            basename: "botany"
+        }))
         // This will output the non-minified version
         .pipe(gulp.dest('dist'))
         // This will minify and rename to foo.min.js
         .pipe(uglify())
-        .pipe(rename({extname: '.min.js'}))
+        .pipe(rename({
+            extname: '.min.js'
+        }))
         .pipe(gulp.dest('dist'));
 });
 

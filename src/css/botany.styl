@@ -14,7 +14,6 @@ only-node = ':first-child:last-child';
 toURL(path)
   return path == '' ? none:url(path)
 
-
 /*
  * Themes
  */
@@ -28,21 +27,28 @@ for theme in themesList {
 
   .botany.{theme} li {
     &:before {
-      background-image:
-        toURL(themeData.closed),
-        toURL(themeData.vertical),
-        toURL(themeData.horizontal);
+      background-image: toURL(themeData.closed),
+      toURL(themeData.vertical),
+      toURL(themeData.horizontal);
+
+      //If there's a marker, make it seem clickable
+      if themeData.closed != "" {
+        pointer: cursor;
+      }
     }
 
     &.open:before {
-      background-image:
-        toURL(themeData.open),
-        toURL(themeData.vertical),
-        toURL(themeData.horizontal);
+      background-image: toURL(themeData.open),
+      toURL(themeData.vertical),
+      toURL(themeData.horizontal);
+
+      //If there's a marker, make it seem clickable
+      if themeData.open != "" {
+        pointer: cursor;
+      }
     }
   }
 }
-
 
 /*
  * Main CSS
@@ -75,28 +81,25 @@ for theme in themesList {
     }
   }
 
-  //Base class that applies to all :before pseudo elements, defining the three background images
-  //The open/closed image, the vertical line, and the horizontal line
+  //Base class that applies to all :before pseudo elements, defining the three background images:
+  //the open/closed image, the vertical line, and the horizontal line
   &:before {
-    background-position: -1px 4px, 0px 0px, 10px 6px;
-
-    background-repeat: no-repeat,
-    repeat-y,
-    no-repeat;
-
-    background-size: 75% auto,
-    1em auto,
-    1em auto;
-
-    float: left;
-    cursor: pointer;
-    content: "";
-    display: block;
+    content: ""; //Needed to make the peudo element visible
     position: absolute;
-    /*height: calc(100% + 1em);*/
-    height: 100%;
-    width: 20px;
-    margin-left: -20px;
+    height: 100%; //Same height as the node it's :before
+    background-repeat: no-repeat, repeat-y, repeat-x; //The marker doesn't repeat, the lines do
+
+    width: calc(2em + 1px);
+    margin-left: -2em; //Move it back by its width
+
+    //These are weirdly specific but they seem to work
+    background-size: 1.3em auto, 1em auto, auto 1em;
+    background-position: -0.2em 0.2em, 0px 0.15em, 0.75em 0.3em;
+
+    //The left padding means the horizontal line is cut off at the left edge because it uses a content-box
+    //Whereas all the others use border-box
+    padding-left: 0.4em;
+    background-clip: border-box, content-box, content-box;
   }
 
   // The last node has no vertical line
@@ -104,6 +107,7 @@ for theme in themesList {
 
     &:before {
       height: 1.2em;
+      background-repeat: no-repeat, no-repeat, repeat-x;
     }
   }
 }
