@@ -86,3 +86,26 @@ Adding a custom theme would make it more like this (if you had a my-theme.json f
 Then, to re-create the stylesheet, just run `gulp build`, and the files in the dist directory will be rebuilt. Of course
 to do this you'll have to install the dev dependencies, so don't use the `--production` flag for `npm install`. You can
 also rebuild botany if you want to make any other changes to the main stylesheet (botany.styl) or the main script (script.js)
+
+## Contributions
+
+If you like the project, please help make it better! At the moment the main things that need to be fixed before a 1.0.0
+release are:
+
+* CSS improvements. The vertical lines have a few issues, like not reaching the top of the previous node, and sometimes
+overlapping with each other. CSS changes can be made to `botany.styl` in src/css.
+
+* Stylus improvements. In a lot of cases I may not be using the full power of stylus in the library. If you have more
+experience with stylus than me, feel free to simply the stylesheet and make a Pull Request.
+
+* Better and more themes. I'm not a graphics designed, so the SVGs I made are pretty basic (and boring). Some more markers
+would be a fantastic help to me.
+
+* Bug fixes and feature suggestions. I'm eager to hear how I can make botany work better for your use case. Just file an
+issue and I'll see what I can do.
+
+### Style
+
+The only ideosyncracy with the coding style of botany is the use of braces in the stylus sheets.
+While braces are optional in .styl files, and aren't used in any of the example code for the Stylus library, I think it's a lot
+clearer to use braces to separate blocks, especially coming from a pure JavaScript/CSS background.
