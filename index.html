@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Botany by TMiguelT</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Botany</h1>
+          <h2>A css/js library for creating dynamic tree-view components</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/TMiguelT/botany/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/TMiguelT/botany/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/TMiguelT/botany" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="botanyjs" class="anchor" href="#botanyjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Botany.js</h1>
+
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>Botany is a JavaScript/CSS library for creating tree view components using <em>declarative techniques</em>. This means that,
+unlike imperative (but still very powerful) libraries like <a href="http://www.jstree.com/">jsTree</a>, botany trees can be built
+using the DOM templating of JavaScript frameworks like Angular, React etc., and adding or removing elements from the
+tree can be done without needing to tell the tree to update or redraw anything.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Run <code>npm install botany</code> or <code>git clone https://github.com/TMiguelT/botany</code> to get the latest version of the library,
+then copy the contents of <code>dist</code> directory to your project (for example, you might put it in <code>static/libs/botany</code>).
+This directory includes the stylesheet (<code>botany.css</code>), the script (<code>botany.js</code>) and all the relevant image files (<code>.svg</code>)</p>
+
+<p>Then you'll need to reference both the stylesheet and the script in your HTML. You'll also need to include jQuery
+because it's required by botany. Of course in a real website you'd put the scripts at the bottom of the page and
+the stylesheets in the <code>&lt;head&gt;</code>:</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s1"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s1"><span class="pl-pds">"</span>static/libs/botany/botany.css<span class="pl-pds">"</span></span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>static/libs/botany/git adbotany.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>To use botany, you first need to create an unordered list with the class <code>botany</code>, and give it a class indicating which
+theme to use (see <a href="#themes">themes</a> for more information). For example, your list element might look like this:</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">ul</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>botany lines<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">ul</span>&gt;</pre></div>
+
+<p>Then all you need to do is call <code>$("selector").botany()</code> on the list you just created. It may seem redundant to add the
+class and call a jQuery function but the class determines the styling of the list, meaning that the style won't suddenly
+change when you call the plugin. All the plugin does is setup the even handlers for opening and closing the nodes.</p>
+
+<h2>
+<a id="themes" class="anchor" href="#themes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Themes</h2>
+
+<p>The themes (like <code>lines</code>) in the above example, are one of the following:</p>
+
+<ul>
+<li>lines</li>
+<li>no-lines</li>
+<li>no-markers</li>
+</ul>
+
+<p>Themes determine which images to use as the marker (indicating a node is open or closed), as well as the horizontal
+and vertical lines that make up the tree. The default three themes are pretty self explanatory, but if you want to
+write your own theme (use your own custom images), read the section on <a href="#custom-themes">custom themes</a></p>
+
+<h2>
+<a id="basic-customization" class="anchor" href="#basic-customization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Customization</h2>
+
+<p>As shown in the demo files (have a look in the demo directory), a Botany tree consists of a <code>&lt;ul&gt;</code> element with the class
+<code>botany</code>. You can have any DOM structure inside this tree, but there are some things to note:</p>
+
+<ul>
+<li><p>Any <code>&lt;ul&gt;</code> or <code>&lt;li&gt;</code> elements inside the <code>.botany</code> element will be styled.</p></li>
+<li><p>The <code>.open</code> class indicates when a node is open, and can be manually added to nodes that you want to start open (by
+default nodes are closed). This class is also automatically toggled whenever a node is opened or closed by a user, so
+you can write your own custom styles based on this.</p></li>
+<li><p>The <code>.botany-open</code> and <code>.botany-closed</code> classes are for manually specifying an open/closed indicator. Such an element
+should be a direct child of an <code>&lt;li&gt;</code> and these should only be used when using a theme that has no indicators itself
+(i.e. the no-markers theme). Have a look at the demo-bootstrap.html file for an example of using the <code>.botany-open</code> and
+<code>.botany-closed</code> classes.</p></li>
+</ul>
+
+<h2>
+<a id="custom-themes" class="anchor" href="#custom-themes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Themes</h2>
+
+<p>To create a custom theme for botany, all you need to do is add a <code>.json</code> file to the <code>src/css/themes</code> directory containing
+paths to the image files you want to use as the open and closed markers, and the vertical and horizontal lines. It's
+probably a good idea to use the existing json files as a template. Also note that you don't have to use SVGs as your
+images, you can use any image format that CSS supports (png, jpeg etc.)</p>
+
+<p>Then, just add the name of that json file to the themesList variable in botany.styl. It currently looks like this:</p>
+
+<p><code>themesList = "lines", "no-lines", "no-markers"</code></p>
+
+<p>Adding a custom theme would make it more like this (if you had a my-theme.json file in the themes directory)</p>
+
+<p><code>themesList = "lines", "no-lines", "no-markers", "my-theme"</code></p>
+
+<p>Then, to re-create the stylesheet, just run <code>gulp build</code>, and the files in the dist directory will be rebuilt. Of course
+to do this you'll have to install the dev dependencies, so don't use the <code>--production</code> flag for <code>npm install</code>. You can
+also rebuild botany if you want to make any other changes to the main stylesheet (botany.styl) or the main script (script.js)</p>
+        </section>
+
+        <footer>
+          Botany is maintained by <a href="https://github.com/TMiguelT">TMiguelT</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
