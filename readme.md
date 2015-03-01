@@ -9,7 +9,7 @@ tree can be done without needing to tell the tree to update or redraw anything.
 
 ## Demos
 
-Have a look at a live demo [here on GitHub Pages](tmiguelt.github.io/botany/#demo), or clone the repository and run the demo files.
+Have a look at a live demo [here on GitHub Pages](http://tmiguelt.github.io/botany/#demo), or clone the repository and run the demo files.
 
 ## Installation
 
