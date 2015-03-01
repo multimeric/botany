@@ -3,7 +3,7 @@
 ## Introduction
 
 Botany is a JavaScript/CSS library for creating tree view components using *declarative techniques*. This means that,
-unlike imperative (but still very powerful) libraries like [jsTree](http://www.jstree.com/), Botany trees can be built
+unlike imperative (but still very powerful) libraries like [jsTree](http://www.jstree.com/), botany trees can be built
 using the DOM templating of JavaScript frameworks like Angular, React etc., and adding or removing elements from the
 tree can be done without needing to tell the tree to update or redraw anything.
 
@@ -18,9 +18,9 @@ because it's required by botany. Of course in a real website you'd put the scrip
 the stylesheets in the `<head>`:
 
 ```html
-<link rel="stylesheet" href="lines/lines.css">
+<link rel="stylesheet" href="static/libs/botany/botany.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="botany.min.js"></script>
+<script src="static/libs/botany/git adbotany.min.js"></script>
 ```
 
 ## Usage
@@ -46,7 +46,7 @@ The themes (like `lines`) in the above example, are one of the following:
 
 Themes determine which images to use as the marker (indicating a node is open or closed), as well as the horizontal
 and vertical lines that make up the tree. The default three themes are pretty self explanatory, but if you want to
-write your own theme (use your own custom images), read the section on [custom themes][#custom-themes]
+write your own theme (use your own custom images), read the section on [custom themes](#custom-themes)
 
 ## Basic Customization
 
