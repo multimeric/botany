@@ -1,0 +1,55 @@
+.botany.lines li:before {
+  background-image: url("closed.svg"), url("vertical.svg"), url("horizontal.svg");
+}
+.botany.lines li.open:before {
+  background-image: url("open.svg"), url("vertical.svg"), url("horizontal.svg");
+}
+.botany.no-lines li:before {
+  background-image: url("closed.svg"), none, none;
+}
+.botany.no-lines li.open:before {
+  background-image: url("open.svg"), none, none;
+}
+.botany.no-markers li:before {
+  background-image: none, url("vertical.svg"), url("horizontal.svg");
+}
+.botany.no-markers li.open:before {
+  background-image: none, url("vertical.svg"), url("horizontal.svg");
+}
+.botany-closed,
+.botany-open {
+  cursor: pointer;
+}
+.botany li.open > .botany-closed {
+  display: none;
+}
+.botany li:not(.open) ul {
+  display: none;
+}
+.botany li:not(.open) > .botany-open {
+  display: none;
+}
+.botany li:before {
+  background-position: -1px 4px, 0px 0px, 10px 6px;
+  background-repeat: no-repeat, repeat-y, no-repeat;
+  background-size: 75% auto, 1em auto, 1em auto;
+  float: left;
+  cursor: pointer;
+  content: "";
+  display: block;
+  position: absolute;
+/*height: calc(100% + 1em);*/
+  height: 100%;
+  width: 20px;
+  margin-left: -20px;
+}
+.botany li:last-child:not(:first-child):before,
+.botany li:first-child:last-child:before {
+  height: 1.2em;
+}
+.botanyul,
+.botany ul,
+.botany li {
+  position: relative;
+  list-style: none;
+}

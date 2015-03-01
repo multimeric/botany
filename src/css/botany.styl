@@ -1,26 +1,63 @@
-//Selector variables
+/*
+ * Selector variables
+ */
+
 middle-node = ':not(:last-child):not(:first-child)';
 first-node = ':first-child:not(:last-child)';
 last-node = ':last-child:not(:first-child)';
 only-node = ':first-child:last-child';
 
-//background-image variables
-closed = closed-img == '' ? none:url(closed-img)
-opened = open-img == '' ? none:url(open-img)
-vertical = vertical-img == '' ? none:url(vertical-img)
-horizontal = horizontal-img == '' ? none:url(horizontal-img)
+/*
+ * Functions
+ */
 
+toURL(path)
+  return path == '' ? none:url(path)
+
+
+/*
+ * Themes
+ */
+
+//The list of themes to be available in the final stylesheet as classes. Change this list to add or remove themes
+themesList = "lines", "no-lines", "no-markers"
+
+//For each theme, import the json file that indicates the images to use
+for theme in themesList {
+  themeData = json('themes/' + theme + '.json', { hash: true })
+
+  .botany.{theme} li {
+    &:before {
+      background-image:
+        toURL(themeData.closed),
+        toURL(themeData.vertical),
+        toURL(themeData.horizontal);
+    }
+
+    &.open:before {
+      background-image:
+        toURL(themeData.open),
+        toURL(themeData.vertical),
+        toURL(themeData.horizontal);
+    }
+  }
+}
+
+
+/*
+ * Main CSS
+ */
 
 //Make the open and closed images seem interactive
 .botany-closed, .botany-open {
   cursor: pointer;
 }
 
-.tree li {
+.botany li {
 
   //Don't display the closed image inside a open node
   &.open {
-    &>.botany-closed {
+    & > .botany-closed {
       display: none;
     }
   }
@@ -33,7 +70,7 @@ horizontal = horizontal-img == '' ? none:url(horizontal-img)
     }
 
     //Don't display the open image inside a closed node
-    &>.botany-open {
+    & > .botany-open {
       display: none;
     }
   }
@@ -41,15 +78,13 @@ horizontal = horizontal-img == '' ? none:url(horizontal-img)
   //Base class that applies to all :before pseudo elements, defining the three background images
   //The open/closed image, the vertical line, and the horizontal line
   &:before {
-    background-position: 0 5px,
-    0 0,
-    10px 6px;
+    background-position: -1px 4px, 0px 0px, 10px 6px;
 
     background-repeat: no-repeat,
     repeat-y,
     no-repeat;
 
-    background-size: 50% auto,
+    background-size: 75% auto,
     1em auto,
     1em auto;
 
@@ -58,51 +93,23 @@ horizontal = horizontal-img == '' ? none:url(horizontal-img)
     content: "";
     display: block;
     position: absolute;
-    height: calc(100% + 1em);
+    /*height: calc(100% + 1em);*/
+    height: 100%;
     width: 20px;
     margin-left: -20px;
   }
 
   // The last node has no vertical line
-  &{last-node} {
+  &{last-node}, &{only-node} {
 
     &:before {
-      background-image: closed,
-      none,
-      horizontal;
+      height: 1.2em;
     }
-
-    &.open:before {
-      background-image: opened,
-      none,
-      horizontal;
-    }
-  }
-
-  //The normal nodes have horizontal and vertical lines
-  &{first-node}, &{middle-node}, &{only-node} {
-
-    &:before {
-      background-image: closed,
-      vertical,
-      horizontal;
-    }
-
-    &.open:before {
-      background-image: opened,
-      vertical,
-      horizontal;
-    }
-  }
-
-  //Nodes that are by themselves don't need a long vertical line, just a short one
-  &{only-node}:before {
-    height: 1em;
   }
 }
 
 //Make everything relatively positioned so that the :before elements can be absolutely positioned but relative to them
-.tree {
+.botany {
   &ul, ul, li {
     position: relative;
     list-style: none;

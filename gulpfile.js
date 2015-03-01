@@ -3,6 +3,7 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var stylus = require('gulp-stylus');
 var jade = require('gulp-jade');
+var svgmin = require('gulp-svgmin');
 var runSequence = require('run-sequence');
 
 //A full build cleans the dist and demo folders, then once that's finished, builds everything else
@@ -27,14 +28,18 @@ gulp.task('js', function () {
 
 //Copy all the SVG files into the relevant theme folder
 gulp.task('svg', function () {
-    return gulp.src('src/css/*/*.svg')
+    return gulp.src('src/svg/*.svg')
+        .pipe(svgmin())
         .pipe(gulp.dest('dist'));
 });
 
 //Compile the stylus sheets and copy them into the relevant theme folder
 gulp.task('css', function () {
-    return gulp.src('src/css/*/*.styl')
-        .pipe(stylus())
+    return gulp.src('src/css/botany.styl')
+    //return gulp.src('src/css/*/*.styl')
+        .pipe(stylus({
+            //url: { name: 'url', limit: false }
+        }))
         .pipe(rename(function (file) {
             file.extname = ".css";
         }))
@@ -46,23 +51,20 @@ gulp.task('demo', ['demo-themes', 'demo-other']);
 
 //Compile a demo for each theme using demo.jade as the base
 gulp.task('demo-themes', function () {
-    gulp.src('src/css/*/*.styl')
+    gulp.src('src/css/themes/*.json')
         //Make a demo file for each theme
         .pipe(rename(function (file) {
-            var themeName = file.basename;
-            var stylesheet = "../dist/" + file.dirname + "/" + themeName + ".css";
-
             gulp.src('src/html/demo.jade')
                 .pipe(jade({
                     locals: {
-                        treeTheme: stylesheet
+                        theme: file.basename
                     },
                     pretty: true
                 }))
                 .pipe(rename(function (htmlFile) {
                     htmlFile.dirname = "";
                     htmlFile.extname = ".html";
-                    htmlFile.basename += "-" + themeName;
+                    htmlFile.basename += "-" + file.basename;
                 }))
                 .pipe(gulp.dest("demo"));
         }));
@@ -77,6 +79,7 @@ gulp.task('demo-other', function () {
         }))
         .pipe(rename(function (htmlFile) {
             htmlFile.extname = ".html";
+            htmlFile.basename = "demo-" + htmlFile.basename;
         }))
         .pipe(gulp.dest("demo"));
 });

@@ -4,9 +4,9 @@ html
         meta(charset='UTF-8')
         title
         link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
-        link(rel='stylesheet', href=treeTheme)
+        link(rel='stylesheet', href='../dist/botany.css')
     body
-        ul.tree
+        ul.botany(class=theme)
             li List 1
                 ul
             li List 2
@@ -19,9 +19,11 @@ html
         script(src='../dist/script.min.js')
         script.
             $(function () {
+                $(".botany").botany();
+
                 var counter = 0;
                 $(".randomize").click(function () {
-                    var lists = $(".tree ul");
+                    var lists = $(".botany ul");
                     var index = Math.floor(Math.random() * lists.length);
                     $(lists[index]).append("<li class='open'> Inserted " + counter++  + "<ul></ul></li>");
                 });

@@ -17,6 +17,7 @@ First, choose a basic theme. Botany themes include the entire botany stylesheet,
 as the lines that make up the tree, as well as the image used to indicate when a node is opened or closed.
 Include this theme folder in your static files directory along with script.min.js, then add references to the
 stylesheet and the script like this:
+
 ```html
 <script src="script.min.js">
 <link rel="stylesheet" href="lines/lines.css">

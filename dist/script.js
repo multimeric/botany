@@ -1,26 +1,42 @@
-//Whenever any tree element is clicked, bubble up to find the
-$('.tree').on('click', 'li, ul, .botany-open, .botany-closed', function (e) {
-    var clicked = $(e.target).closest("li");
-    var children = $(clicked).children("ul");
+$.fn.botany = function () {
 
-    if (clicked.hasClass("open")) {
+    //Error checking
+    if (!(this.hasClass("botany") && this.prop("tagName") == "UL"))
+        throw new Error("The target of $().botany must be a <ul> element with the class .botany");
 
-        if (children.children().length > 0)
-            children.slideUp(function () {
+    //Whenever any tree element is clicked, bubble up to find the nearest node, and close/open it
+    $(this).on('click', 'li, ul, .botany-open, .botany-closed', function (e) {
+
+        //Find the closest node
+        var clicked = $(e.target).closest("li");
+
+        //Find its list of children (<ul>)
+        var childList = $(clicked).children("ul");
+
+        if (clicked.hasClass("open")) {
+
+            //If there are subnodes, then run the slideUp animation before removing the open class
+            if (childList.children().length > 0)
+                childList.slideUp(function () {
+                    clicked.removeClass("open");
+                });
+
+            //Otherwise just remove the class straight away (so there is no delay due to animation)
+            else
                 clicked.removeClass("open");
-            });
-        else
-            clicked.removeClass("open");
 
-    }
-    else {
-        if (children.children().length > 0)
-            children.slideDown(function () {
+        }
+
+        //Same logic as above
+        else {
+            if (childList.children().length > 0)
+                childList.slideDown(function () {
+                    clicked.addClass("open");
+                });
+            else
                 clicked.addClass("open");
-            });
-        else
-            clicked.addClass("open");
-    }
+        }
 
-    e.stopPropagation();
-});
+        e.stopPropagation();
+    });
+};

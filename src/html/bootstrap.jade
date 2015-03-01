@@ -4,13 +4,13 @@ html
         meta(charset='UTF-8')
         title
         link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
-        link(rel='stylesheet', href='../dist/no-markers/no-markers.css')
+        link(rel='stylesheet', href='../dist/botany.css')
     body
-        ul.tree
+        ul.botany.no-markers
             li
                 span.botany-closed.glyphicon.glyphicon-plus
                 span.botany-open.glyphicon.glyphicon-minus
-                |List 1
+                | List 1
                 ul
             li
                 span.botany-closed.glyphicon.glyphicon-plus
@@ -20,7 +20,7 @@ html
             li
                 span.botany-closed.glyphicon.glyphicon-plus
                 span.botany-open.glyphicon.glyphicon-minus
-                |List 3
+                | List 3
                 ul
 
         button.randomize(type="button") Add Random Nodes
@@ -28,14 +28,16 @@ html
         script(src='../dist/script.min.js')
         script.
             $(function () {
+                $(".botany").botany();
+
                 var counter = 0;
                 $(".randomize").click(function () {
-                    var lists = $(".tree ul");
+                    var lists = $(".botany ul");
                     var index = Math.floor(Math.random() * lists.length);
                     $(lists[index]).append('<li class="open">' +
                     '<span class="botany-closed glyphicon glyphicon-plus"></span>' +
                     '<span class="botany-open glyphicon glyphicon-minus"></span>' +
-                    'Inserted ' + counter++  +
+                    'Inserted ' + counter++ +
                     '<ul></ul></li>');
                 });
             });
