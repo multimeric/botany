@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+	<link rel="stylesheet" href="botany/botany.css">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -41,6 +42,45 @@
 unlike imperative (but still very powerful) libraries like <a href="http://www.jstree.com/">jsTree</a>, botany trees can be built
 using the DOM templating of JavaScript frameworks like Angular, React etc., and adding or removing elements from the
 tree can be done without needing to tell the tree to update or redraw anything.</p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
+
+<p>Here's an example of a botany tree. Notice that new nodes can be added (and deleted) without refreshing the tree. Run any of the .html files from the  demos directory of the repository for more examples</p>
+
+  <ul class="botany lines">
+      <li>List 1
+        <ul></ul>
+      </li>
+      <li>List 2
+        <ul></ul>
+      </li>
+      <li>List 3
+        <ul></ul>
+      </li>
+    </ul>
+    <button type="button" class="randomize">Add Random Nodes</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="botany/botany.min.js"></script>
+    <script>
+      $(function () {
+          //Initialize the tree
+          $(".botany").botany();
+      
+          //Code for adding random nodes (just used for this example)
+          var counter = 0;
+          function randomize(){
+              for (var i =0; i <= 5; i++) {
+                  var lists = $(".botany ul");
+                  var index = Math.floor(Math.random() * lists.length);
+                  $(lists[index]).append("<li class='open'> Inserted " + counter++ + "<ul></ul></li>");
+              }
+          }
+      
+          $(".randomize").click(randomize);
+          randomize();
+      });
+    </script>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
