@@ -33,7 +33,7 @@ for theme in themesList {
 
       //If there's a marker, make it seem clickable
       if themeData.closed != "" {
-        pointer: cursor;
+        cursor: pointer;
       }
     }
 
@@ -44,7 +44,7 @@ for theme in themesList {
 
       //If there's a marker, make it seem clickable
       if themeData.open != "" {
-        pointer: cursor;
+        cursor: pointer;
       }
     }
   }
@@ -59,8 +59,11 @@ for theme in themesList {
   cursor: pointer;
 }
 
-.botany li {
+.botany ul {
+  padding-left: 40px;
+}
 
+.botany li {
   //Don't display the closed image inside a open node
   &.open {
     & > .botany-closed {
@@ -84,12 +87,13 @@ for theme in themesList {
   //Base class that applies to all :before pseudo elements, defining the three background images:
   //the open/closed image, the vertical line, and the horizontal line
   &:before {
+    box-sizing border-box;
     content: ""; //Needed to make the peudo element visible
     position: absolute;
     height: 100%; //Same height as the node it's :before
     background-repeat: no-repeat, repeat-y, repeat-x; //The marker doesn't repeat, the lines do
 
-    width: calc(2em + 1px);
+    width: calc(2em - 1px);
     margin-left: -2em; //Move it back by its width
 
     //These are weirdly specific but they seem to work
@@ -115,6 +119,7 @@ for theme in themesList {
 //Make everything relatively positioned so that the :before elements can be absolutely positioned but relative to them
 .botany {
   &ul, ul, li {
+    margin 0;
     position: relative;
     list-style: none;
   }

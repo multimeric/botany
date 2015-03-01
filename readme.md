@@ -7,6 +7,10 @@ unlike imperative (but still very powerful) libraries like [jsTree](http://www.j
 using the DOM templating of JavaScript frameworks like Angular, React etc., and adding or removing elements from the
 tree can be done without needing to tell the tree to update or redraw anything.
 
+## Demos
+
+Have a look at a live demo [here on GitHub Pages](tmiguelt.github.io/botany/#demo), or clone the repository and run the demo files.
+
 ## Installation
 
 Run `npm install botany` or `git clone https://github.com/TMiguelT/botany` to get the latest version of the library,

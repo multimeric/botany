@@ -9,19 +9,19 @@
  */
 .botany.lines li:before {
   background-image: url("closed.svg"), url("vertical.svg"), url("horizontal.svg");
-  pointer: cursor;
+  cursor: pointer;
 }
 .botany.lines li.open:before {
   background-image: url("open.svg"), url("vertical.svg"), url("horizontal.svg");
-  pointer: cursor;
+  cursor: pointer;
 }
 .botany.no-lines li:before {
   background-image: url("closed.svg"), none, none;
-  pointer: cursor;
+  cursor: pointer;
 }
 .botany.no-lines li.open:before {
   background-image: url("open.svg"), none, none;
-  pointer: cursor;
+  cursor: pointer;
 }
 .botany.no-markers li:before {
   background-image: none, url("vertical.svg"), url("horizontal.svg");
@@ -36,6 +36,9 @@
 .botany-open {
   cursor: pointer;
 }
+.botany ul {
+  padding-left: 40px;
+}
 .botany li.open > .botany-closed {
   display: none;
 }
@@ -46,11 +49,12 @@
   display: none;
 }
 .botany li:before {
+  box-sizing: border-box;
   content: "";
   position: absolute;
   height: 100%;
   background-repeat: no-repeat, repeat-y, repeat-x;
-  width: calc(2em + 1px);
+  width: calc(2em - 1px);
   margin-left: -2em;
   background-size: 1.3em auto, 1em auto, auto 1em;
   background-position: -0.2em 0.2em, 0px 0.15em, 0.75em 0.3em;
@@ -65,6 +69,7 @@
 .botanyul,
 .botany ul,
 .botany li {
+  margin: 0;
   position: relative;
   list-style: none;
 }
