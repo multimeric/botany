@@ -1,6 +1,22 @@
 {
   "name": "botany",
-  "version": "0.0.1",
+  "description": "A library for making dynamic HTML tree-views that work with data binding and DOM manipulation",
+  "keywords": [
+    "dynamic",
+    "tree-view",
+    "treeview",
+    "tree",
+    "treenode",
+    "tree-node"
+  ],
+  "homepage": "http://tmiguelt.github.io/botany/",
+  "bugs": "https://github.com/TMiguelT/botany/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TMiguelT/botany"
+  },
+  "version": "0.0.2",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-jade": "^1.0.0",
